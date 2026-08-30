@@ -1,22 +1,124 @@
-# Caco-2 Permeability Prediction Using Machine Learning
+# Interpretable Machine Learning for Caco-2 Permeability Prediction
+
+**Cheminformatics • ADMET • Molecular Machine Learning • Explainable AI • Molecular Interpretation**
+
+[![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://www.python.org/)
+[![RDKit](https://img.shields.io/badge/RDKit-Cheminformatics-green.svg)](https://www.rdkit.org/)
+[![scikit--learn](https://img.shields.io/badge/scikit--learn-Machine%20Learning-orange.svg)](https://scikit-learn.org/)
+[![SHAP](https://img.shields.io/badge/SHAP-Explainability-purple.svg)](https://shap.readthedocs.io/)
+[![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)](LICENSE)
 
 ## Overview
 
-This project develops an interpretable machine-learning workflow for predicting **Caco-2 permeability**, an important in-vitro ADMET endpoint used in drug-discovery research.
+Caco-2 permeability is an important **in-vitro ADMET endpoint** used to investigate intestinal permeability during drug-discovery research.
 
-The workflow combines:
+This project develops a reproducible and interpretable machine-learning workflow for predicting Caco-2 permeability from molecular structure.
+
+Rather than treating the problem as prediction alone, the workflow investigates **why the models make their predictions** by combining:
 
 * RDKit molecular descriptors
-* Morgan molecular fingerprints
+* Morgan circular fingerprints
 * Random Forest regression
 * 5-fold cross-validation
-* Out-of-fold (OOF) prediction
-* SHAP explainability
-* Morgan fingerprint interpretation
-* Statistical analysis of molecular environments
-* RDKit-based structural visualization
+* pooled out-of-fold (OOF) prediction
+* SHAP-based model interpretation
+* statistical analysis of Morgan fingerprint environments
+* RDKit-based molecular visualization
 
-The goal is not only to predict Caco-2 permeability, but also to understand **which molecular properties and local structural environments contribute to model behavior**.
+The central research question is:
+
+> **Can combining global physicochemical descriptors with local molecular fingerprints improve Caco-2 permeability prediction while retaining chemically interpretable information?**
+
+---
+
+## Key Results
+
+### Model comparison
+
+Three molecular representations were evaluated using 5-fold cross-validation.
+
+| Representation           |    Mean R² |      SD R² |  Mean RMSE |   Mean MAE |
+| ------------------------ | ---------: | ---------: | ---------: | ---------: |
+| RDKit descriptors        | **0.7159** |     0.0297 |     0.4114 |     0.3182 |
+| Morgan fingerprints      |     0.6612 |     0.0504 |     0.4483 |     0.3356 |
+| **Descriptors + Morgan** | **0.7455** | **0.0258** | **0.3895** | **0.3005** |
+
+The combined representation produced the strongest cross-validation performance.
+
+Compared with RDKit descriptors alone:
+
+* **R²:** 0.7159 → **0.7455**
+* **RMSE:** 0.4114 → **0.3895**
+* **MAE:** 0.3182 → **0.3005**
+* **R² variability:** 0.0297 → **0.0258**
+
+This indicates that global physicochemical descriptors and local structural fingerprints provide complementary information for this dataset.
+
+### Pooled out-of-fold performance
+
+To obtain a molecule-level estimate using predictions generated while each molecule was held out, predictions from all five validation folds were pooled.
+
+| Metric        | OOF performance |
+| ------------- | --------------: |
+| Molecules     |             910 |
+| R²            |      **0.7230** |
+| RMSE          |      **0.4089** |
+| MAE           |      **0.3177** |
+| Mean residual |         −0.0216 |
+| Residual SD   |          0.4085 |
+
+The distinction between the mean CV score and pooled OOF score is intentional:
+
+* **0.7455 R²** = mean of the five fold-level R² values
+* **0.7230 R²** = R² calculated after pooling all out-of-fold predictions
+
+These metrics answer related but different questions and are therefore both reported.
+
+---
+
+## Research Workflow
+
+```text
+Caco-2 molecular dataset
+          │
+          ▼
+      Data cleaning
+          │
+          ▼
+ ┌─────────────────────┐
+ │ Molecular structure │
+ │       SMILES        │
+ └─────────────────────┘
+          │
+     ┌────┴────┐
+     ▼         ▼
+ RDKit      Morgan
+descriptors fingerprints
+     │         │
+     └────┬────┘
+          ▼
+   Representation
+    comparison
+          │
+          ▼
+ Random Forest models
+          │
+          ▼
+    5-fold CV + OOF
+          │
+     ┌────┴──────────────┐
+     ▼                   ▼
+  SHAP analysis     Morgan-bit
+     │              interpretation
+     │                   │
+     ▼                   ▼
+Global molecular     Local chemical
+feature effects      environments
+          │                   │
+          └─────────┬─────────┘
+                    ▼
+        Interpretable ADMET model
+```
 
 ---
 
@@ -27,210 +129,323 @@ The project uses the **Caco2_Wang** dataset from the Therapeutics Data Commons.
 The processed dataset contains:
 
 * **910 molecules**
-* Molecular identifiers
+* molecular identifiers
 * SMILES structures
-* Caco-2 permeability measurements
+* experimental Caco-2 permeability measurements
 
-The dataset was processed using RDKit before machine-learning analysis.
+Molecular structures were processed using RDKit before feature generation.
+
+The dataset is retained in the repository under:
+
+```text
+data/
+├── raw/
+│   └── caco2_wang.csv
+└── processed/
+    ├── caco2_rdkit_features.csv
+    ├── caco2_morgan_fingerprints.csv
+    └── ...
+```
 
 ---
 
-## Molecular Representations
+# Molecular Representations
 
-### RDKit Molecular Descriptors
+## 1. RDKit Molecular Descriptors
 
-Physicochemical and structural descriptors were calculated from the molecular SMILES using RDKit.
+Physicochemical and structural descriptors were calculated from molecular SMILES using RDKit.
 
-These descriptors capture global molecular characteristics such as:
+These descriptors capture global molecular characteristics including:
 
 * molecular size
 * lipophilicity
 * hydrogen-bonding properties
 * molecular topology
-* polarity-related characteristics
+* polarity-related properties
 
-### Morgan Fingerprints
-
-Morgan circular fingerprints were generated to encode local molecular environments.
-
-Unlike global descriptors, Morgan fingerprints capture structural patterns surrounding individual atoms and therefore provide complementary information about molecular structure.
+These features provide a compact representation of whole-molecule physicochemical behavior.
 
 ---
 
-# Machine-Learning Approach
+## 2. Morgan Fingerprints
 
-Random Forest regression was used to predict the Caco-2 permeability target.
+Morgan circular fingerprints encode local molecular environments around atoms.
 
-Three feature representations were compared:
+Unlike conventional global descriptors, fingerprints capture structural patterns occurring within localized molecular neighborhoods.
 
-1. RDKit descriptors
+This provides complementary structural information that may not be represented explicitly by a small descriptor set.
+
+---
+
+## 3. Combined Representation
+
+The final representation combines:
+
+```text
+RDKit descriptors + Morgan fingerprints
+```
+
+The improvement in cross-validation performance suggests that the two representations contain complementary predictive information.
+
+---
+
+# Machine-Learning Model
+
+A **Random Forest regression** model was used as the primary predictive algorithm.
+
+The three representations evaluated were:
+
+1. RDKit molecular descriptors
 2. Morgan fingerprints
-3. Combined RDKit descriptors + Morgan fingerprints
+3. RDKit descriptors + Morgan fingerprints
 
 Performance was evaluated using **5-fold cross-validation**.
+
+The workflow also generated pooled **out-of-fold predictions**, allowing molecule-level residual analysis without using predictions from a model trained on that molecule.
 
 ---
 
 # Model Performance
 
-The complete cross-validation comparison is shown below.
+![Model representation comparison](figures/caco2_model_representation_comparison.png)
 
-| Model                             |    Mean R² |      SD R² |  Mean RMSE |    SD RMSE |   Mean MAE |     SD MAE |
-| --------------------------------- | ---------: | ---------: | ---------: | ---------: | ---------: | ---------: |
-| RDKit Descriptors                 |     0.7159 |     0.0297 |     0.4114 |     0.0217 |     0.3182 |     0.0103 |
-| Morgan Fingerprints               |     0.6612 |     0.0504 |     0.4483 |     0.0344 |     0.3356 |     0.0243 |
-| **Combined Descriptors + Morgan** | **0.7455** | **0.0258** | **0.3895** | **0.0217** | **0.3005** | **0.0148** |
+*Comparison of Caco-2 permeability prediction performance across molecular representations.*
 
-The **combined descriptor + Morgan representation performed best**.
+The combined representation achieved the strongest overall cross-validation performance.
 
-Compared with RDKit descriptors alone:
+The result supports a central modeling observation:
 
-* Mean R² increased from **0.7159 → 0.7455**
-* Mean RMSE decreased from **0.4114 → 0.3895**
-* Mean MAE decreased from **0.3182 → 0.3005**
-* R² variability decreased from **0.0297 → 0.0258**
+> **Global physicochemical descriptors and local structural fingerprints can provide complementary information for Caco-2 permeability prediction.**
 
-These results suggest that global physicochemical descriptors and local molecular fingerprints provide complementary information for Caco-2 permeability prediction.
-
-The complete model comparison is stored in:
-
-`results/caco2_model_comparison.csv`
-
----
-
-# Out-of-Fold Validation
-
-Pooled out-of-fold predictions were generated for all **910 molecules** using the combined molecular representation.
-
-The pooled OOF performance was:
-
-| Metric        | OOF Performance |
-| ------------- | --------------: |
-| Molecules     |             910 |
-| R²            |      **0.7230** |
-| RMSE          |      **0.4089** |
-| MAE           |      **0.3177** |
-| Mean residual |         −0.0216 |
-| Residual SD   |          0.4085 |
-
-The OOF predictions are stored in:
-
-`results/caco2_combined_oof_predictions.csv`
-
-### CV vs OOF
-
-The **0.7455 R²** is the mean of the five individual cross-validation fold scores.
-
-The **0.7230 R²** is calculated after pooling the predictions generated for every molecule when that molecule was held out during cross-validation.
-
-These are therefore different but complementary measures of model performance.
-
----
-
-# SHAP Model Interpretation
-
-SHAP was used to investigate which molecular features influence Random Forest predictions.
-
-The analysis provides:
-
-* global feature importance
-* direction and magnitude of feature effects
-* feature-level interpretation
-* hydrogen-bond donor dependence analysis
-
-Current SHAP figures include:
+Complete numerical results are available in:
 
 ```text
-figures/caco2_shap_summary.png
-figures/caco2_shap_feature_importance.png
-figures/caco2_shap_HBD_dependence.png
+results/caco2_model_comparison.csv
 ```
 
-SHAP provides a global explanation of the model based on the molecular descriptor representation.
+---
+
+# Out-of-Fold Prediction Analysis
+
+![OOF predicted vs experimental](figures/caco2_oof_predicted_vs_experimental.png)
+
+*Experimental versus pooled out-of-fold predictions for the 910 molecules.*
+
+![OOF residuals](figures/caco2_oof_residuals.png)
+
+*Residual distribution from pooled out-of-fold predictions.*
+
+The OOF analysis provides a more granular view of model behavior across the complete dataset.
+
+The predictions are available in:
+
+```text
+results/caco2_combined_oof_predictions.csv
+```
+
+---
+
+# Explainable AI with SHAP
+
+Prediction performance alone does not explain which molecular properties influence the model.
+
+SHAP was therefore used to investigate the contribution of molecular features to Random Forest predictions.
+
+The analysis includes:
+
+* global feature importance
+* feature contribution magnitude
+* direction of feature effects
+* hydrogen-bond donor dependence
+
+## SHAP summary
+
+![SHAP summary](figures/caco2_shap_summary.png)
+
+## SHAP feature importance
+
+![SHAP feature importance](figures/caco2_shap_feature_importance.png)
+
+## Hydrogen-bond donor dependence
+
+![HBD SHAP dependence](figures/caco2_shap_HBD_dependence.png)
+
+This provides a **global molecular-property interpretation layer** for the predictive model.
 
 ---
 
 # Morgan Fingerprint Interpretation
 
-Morgan fingerprints were subsequently analyzed at the local molecular-environment level.
+The analysis was extended beyond global molecular descriptors to investigate individual Morgan fingerprint environments.
 
-Candidate fingerprint bits were evaluated using:
+Candidate fingerprint bits were evaluated using multiple complementary criteria:
 
 * Random Forest importance
-* number of molecules containing the bit
+* number of molecules containing the fingerprint
 * difference between groups
-* Cohen's d
+* Cohen's *d*
 * p-value
 * FDR-adjusted q-value
 * 95% confidence interval
 * adjusted fingerprint coefficient
 * incremental R²
 
-Four representative Morgan environments were selected for detailed interpretation:
-
-**Bit 623, Bit 82, Bit 1290, and Bit 550.**
+This allows fingerprint features to be investigated statistically rather than simply ranked by model importance.
 
 ---
 
-# Key Morgan Fingerprint Results
+## Key Morgan Environments
 
-| Bit      | N Present | Difference |   Cohen's d |      FDR q-value | Adjusted coefficient |          ΔR² |
-| -------- | --------: | ---------: | ----------: | ---------------: | -------------------: | -----------: |
-| **623**  |        52 |    −0.9217 |     −1.2329 |      6.70 × 10⁻⁹ |              −1.1612 | **+0.00850** |
-| **82**   |        23 |    −1.3082 | **−1.7442** |      5.24 × 10⁻⁸ |              −1.4955 |     +0.00497 |
-| **1290** |        38 |    −1.0128 |     −1.3491 |      3.12 × 10⁻⁹ |              −0.9232 |     +0.00288 |
-| **550**  |        33 |    −1.2467 |     −1.6805 | **7.90 × 10⁻¹¹** |              −1.0997 |     −0.00027 |
+Four representative fingerprint environments were selected for detailed structural interpretation:
 
-All four environments showed statistically significant associations after FDR correction.
+| Morgan bit | N present | Difference | Cohen's *d* |      FDR q-value | Adjusted coefficient |      ΔR² |
+| ---------: | --------: | ---------: | ----------: | ---------------: | -------------------: | -------: |
+|        623 |        52 |    −0.9217 |     −1.2329 |      6.70 × 10⁻⁹ |              −1.1612 | +0.00850 |
+|         82 |        23 |    −1.3082 | **−1.7442** |      5.24 × 10⁻⁸ |              −1.4955 | +0.00497 |
+|       1290 |        38 |    −1.0128 |     −1.3491 |      3.12 × 10⁻⁹ |              −0.9232 | +0.00288 |
+|        550 |        33 |    −1.2467 |     −1.6805 | **7.90 × 10⁻¹¹** |              −1.0997 | −0.00027 |
 
-Bit 82 produced the largest standardized effect size, while Bit 550 produced the strongest FDR-adjusted statistical evidence.
+All four selected environments remained statistically significant after FDR correction.
 
-Bit 623 produced the largest incremental R² improvement among the four evaluated environments.
+### Interpretation
 
-These results represent **statistical associations**, not proof that the individual molecular environments causally determine permeability.
+* **Bit 82** showed the largest standardized effect size.
+* **Bit 550** showed the strongest FDR-adjusted statistical evidence.
+* **Bit 623** produced the largest incremental R² improvement among the four evaluated environments.
+
+These findings should be interpreted as **statistical associations**, not evidence that an individual molecular environment causally determines permeability.
 
 ---
 
-# Exact Morgan Environment Verification
+# Exact Structural Verification
 
-The four selected Morgan environments were independently verified using RDKit's Morgan fingerprint `bitInfo` mapping.
+Morgan fingerprint interpretation can be difficult because a fingerprint bit is an encoded representation rather than a chemical name.
 
-| Bit      | Representative molecule | Atom | Radius | Verification |
-| -------- | ----------------------- | ---: | -----: | ------------ |
-| **623**  | Creatinine              |    7 |      0 | Verified     |
-| **82**   | PNU200001               |    1 |      2 | Verified     |
-| **1290** | Elarofiban              |    3 |      1 | Verified     |
-| **550**  | Echinacoside            |    1 |      2 | Verified     |
+To make the interpretation chemically explicit, the selected bits were independently verified using RDKit's Morgan fingerprint `bitInfo` mapping.
+
+|  Bit | Representative molecule | Atom | Radius | Status   |
+| ---: | ----------------------- | ---: | -----: | -------- |
+|  623 | Creatinine              |    7 |      0 | Verified |
+|   82 | PNU200001               |    1 |      2 | Verified |
+| 1290 | Elarofiban              |    3 |      1 | Verified |
+|  550 | Echinacoside            |    1 |      2 | Verified |
 
 The exact atom/radius environments were then highlighted on the corresponding molecular structures.
 
----
+## Four key molecular environments
 
-# Morgan Environment Figures
+![Key Morgan environments](results/morgan_bit_visualizations/key_morgan_environments_4panel.png)
 
-Individual exact Morgan environments are stored in:
+*Exact structural environments corresponding to the four selected Morgan fingerprint bits.*
+
+Individual verified structures are available in:
 
 ```text
 results/morgan_bit_visualizations/
 ```
 
-The final four-panel figure is:
+---
+
+# Two Levels of Molecular Interpretation
+
+The project deliberately combines two complementary interpretation strategies.
+
+### Global interpretation
 
 ```text
-results/morgan_bit_visualizations/key_morgan_environments_4panel.png
+Molecular descriptors
+        ↓
+Random Forest
+        ↓
+SHAP
+        ↓
+Global physicochemical effects
 ```
 
-This figure connects the statistical fingerprint analysis to explicit molecular structures.
+### Local structural interpretation
+
+```text
+Morgan fingerprints
+        ↓
+Statistical analysis
+        ↓
+Fingerprint bit
+        ↓
+RDKit bitInfo verification
+        ↓
+Explicit molecular environment
+```
+
+Together they connect:
+
+**molecular structure → numerical representation → machine-learning prediction → model explanation → chemical interpretation**
+
+This is the primary scientific focus of the project.
 
 ---
 
-# Project Structure
+# Reproducibility
+
+The analysis pipeline is organized into sequential Python scripts.
+
+```text
+src/
+├── 01_download_data.py
+├── 02_generate_descriptors.py
+├── 03_generate_morgan.py
+├── 04_model_comparison.py
+├── 05_visualize_key_morgan_bits.py
+└── 06_final_morgan_bit_figures.py
+```
+
+Install the required Python packages:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Run the workflow sequentially:
+
+```bash
+python src/01_download_data.py
+python src/02_generate_descriptors.py
+python src/03_generate_morgan.py
+python src/04_model_comparison.py
+python src/05_visualize_key_morgan_bits.py
+python src/06_final_morgan_bit_figures.py
+```
+
+The repository contains generated intermediate datasets, analysis tables, predictions, and figures so that the workflow can also be inspected without rerunning every step.
+
+---
+
+# Repository Structure
 
 ```text
 admet-drug-discovery-ml/
 │
 ├── data/
-│   └── caco2_wang.csv
+│   ├── raw/
+│   │   └── caco2_wang.csv
+│   └── processed/
+│       ├── caco2_rdkit_features.csv
+│       ├── caco2_morgan_fingerprints.csv
+│       └── ...
+│
+├── figures/
+│   ├── caco2_5fold_cv_r2.png
+│   ├── caco2_model_representation_comparison.png
+│   ├── caco2_oof_predicted_vs_experimental.png
+│   ├── caco2_oof_residuals.png
+│   ├── caco2_shap_summary.png
+│   ├── caco2_shap_feature_importance.png
+│   └── caco2_shap_HBD_dependence.png
+│
+├── results/
+│   ├── caco2_model_comparison.csv
+│   ├── caco2_combined_oof_predictions.csv
+│   ├── morgan_bit_analysis/
+│   └── morgan_bit_visualizations/
 │
 ├── src/
 │   ├── 01_download_data.py
@@ -240,99 +455,140 @@ admet-drug-discovery-ml/
 │   ├── 05_visualize_key_morgan_bits.py
 │   └── 06_final_morgan_bit_figures.py
 │
-├── results/
-│   ├── caco2_model_comparison.csv
-│   ├── caco2_combined_oof_predictions.csv
-│   │
-│   ├── morgan_bit_analysis/
-│   │   ├── final_morgan_chemical_environments.csv
-│   │   ├── final_morgan_interpretability_table.csv
-│   │   └── morgan_interpretability_figure.png
-│   │
-│   └── morgan_bit_visualizations/
-│       ├── key_morgan_environments_4panel.png
-│       ├── morgan_bit_623_EXACT.png
-│       ├── morgan_bit_82_EXACT.png
-│       ├── morgan_bit_1290_EXACT.png
-│       └── morgan_bit_550_EXACT.png
-│
-├── figures/
-│   ├── caco2_shap_summary.png
-│   ├── caco2_shap_feature_importance.png
-│   └── caco2_shap_HBD_dependence.png
-│
 ├── requirements.txt
+├── .gitignore
 └── README.md
 ```
 
 ---
 
-# Reproducibility
+# Scientific Limitations
 
-The principal analysis scripts are located in `src/`.
+Several limitations should be considered when interpreting the results.
 
-The Python environment dependencies are specified in:
+1. **Caco-2 permeability is an in-vitro endpoint** and does not represent the complete biological process of human intestinal absorption.
 
-```text
-requirements.txt
-```
+2. **Fingerprint bits are computational representations.** A Morgan bit should not automatically be interpreted as a unique biological mechanism.
 
-The workflow is organized so that data preparation, molecular representation generation, model comparison, and molecular interpretation can be reproduced from the source code.
+3. **Statistical association is not causation.** Significant fingerprint associations identify patterns in the dataset but do not establish mechanistic causality.
 
----
+4. **Fingerprint environments may occur in multiple chemical contexts.** A single bit does not necessarily correspond to one unique chemical structure.
 
-# Scientific Interpretation
+5. **Cross-validation and OOF predictions are preferable to relying on a single train/test split**, but they do not replace independent external validation.
 
-The project demonstrates a two-level approach to interpretable ADMET machine learning.
+6. **External validation is still required** to establish generalization to genuinely unseen chemical space.
 
-At the **global level**, molecular descriptors and SHAP analysis identify physicochemical characteristics associated with model predictions.
-
-At the **local structural level**, Morgan fingerprint analysis identifies molecular environments that show statistically significant associations with the Caco-2 target.
-
-Together, these approaches connect:
-
-**molecular structure → numerical representation → machine-learning prediction → model explanation → chemical interpretation**
-
-This provides a more informative workflow than prediction alone.
-
----
-
-# Limitations
-
-1. Caco-2 permeability is an experimental in-vitro endpoint and does not capture the complete process of human intestinal absorption.
-2. Morgan fingerprint bits are computational representations and should not automatically be interpreted as unique biological mechanisms.
-3. Statistical association does not establish causality.
-4. The same fingerprint bit may occur in different chemical contexts across molecules.
-5. Model performance should be interpreted using cross-validation and OOF analysis rather than relying on a single train/test split.
-6. Independent external validation would provide stronger evidence of generalizability.
+7. **Random Forest predictions are model-dependent.** Different algorithms or representations may identify different important features.
 
 ---
 
 # Future Work
 
-Potential extensions include:
+The next development stages will focus on improving both predictive robustness and chemical interpretation.
 
+### Validation
+
+* scaffold-based cross-validation
 * independent external validation
-* scaffold-based validation
 * applicability-domain analysis
 * uncertainty estimation
-* additional machine-learning algorithms
-* chemical-space analysis
-* systematic interpretation of additional Morgan environments
-* integration with additional ADMET endpoints
-* prospective prioritization of compounds for experimental testing
+
+### Modeling
+
+* gradient-boosting models
+* XGBoost/LightGBM comparison
+* additional descriptor families
+* graph-based molecular representations
+* ensemble modeling
+
+### Chemical interpretation
+
+* systematic analysis of additional Morgan environments
+* chemical-space visualization
+* scaffold-level interpretation
+* structure–permeability relationship analysis
+* uncertainty-aware molecular interpretation
+
+### ADMET expansion
+
+The workflow can subsequently be extended to additional ADMET endpoints, enabling construction of a broader interpretable ADMET modeling framework.
 
 ---
 
 # Conclusion
 
-This project establishes an interpretable machine-learning workflow for Caco-2 permeability prediction using molecular descriptors and Morgan fingerprints.
+This project demonstrates an interpretable machine-learning workflow for Caco-2 permeability prediction that integrates **cheminformatics, machine learning, statistical analysis, explainable AI, and molecular visualization**.
 
-The combined representation achieved the strongest 5-fold cross-validation performance, with a mean R² of **0.7455**, RMSE of **0.3895**, and MAE of **0.3005**.
+The combined RDKit descriptor + Morgan fingerprint representation achieved the strongest 5-fold cross-validation performance:
 
-Pooled out-of-fold predictions across 910 molecules produced an R² of **0.7230**, RMSE of **0.4089**, and MAE of **0.3177**.
+**R² = 0.7455 ± 0.0258**
 
-SHAP analysis provides global feature-level interpretation, while Morgan fingerprint analysis adds a localized structural interpretation layer. Four Morgan environments—**623, 82, 1290, and 550**—showed strong statistically significant associations with the Caco-2 target after FDR correction.
+with:
 
-Overall, the project demonstrates how **machine learning, cheminformatics, statistical analysis, and molecular visualization can be integrated into an interpretable ADMET modeling workflow**.
+**RMSE = 0.3895 ± 0.0217**
+
+and:
+
+**MAE = 0.3005 ± 0.0148**
+
+Pooled out-of-fold predictions across 910 molecules produced:
+
+**R² = 0.7230**
+
+**RMSE = 0.4089**
+
+**MAE = 0.3177**
+
+Beyond prediction, SHAP analysis provides a global feature-level interpretation, while Morgan fingerprint analysis connects statistically important local structural environments to explicit molecular structures.
+
+The resulting workflow therefore moves from:
+
+> **Prediction → Explanation → Statistical validation → Chemical interpretation**
+
+rather than treating machine learning as a black-box prediction exercise.
+
+---
+
+## Research Positioning
+
+This repository represents a computational drug-discovery project at the intersection of:
+
+**Computational Chemistry × Cheminformatics × Machine Learning × Explainable AI × ADMET**
+
+It is designed as a reproducible research artifact and as a foundation for future work in interpretable molecular property prediction.
+
+---
+
+## Author
+
+**Moneeba Asghar**
+
+MS Chemistry | Computational Chemistry | Machine Learning for Molecular Science
+
+Research interests:
+
+* Computational Chemistry
+* Cheminformatics
+* Molecular Machine Learning
+* ADMET Prediction
+* Explainable AI
+* Drug Discovery
+* Molecular Design
+
+---
+
+## Citation
+
+If you use this workflow or repository in academic work, please cite the repository:
+
+```text
+Asghar, M. Interpretable Machine Learning for Caco-2 Permeability Prediction.
+GitHub repository: Moneebaasghar/admet-drug-discovery-ml.
+```
+
+---
+
+## Acknowledgements
+
+The project uses the Caco2_Wang dataset distributed through the Therapeutics Data Commons and cheminformatics functionality provided by RDKit.
 
