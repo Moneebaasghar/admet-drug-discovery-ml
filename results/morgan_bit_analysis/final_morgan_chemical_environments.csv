@@ -1,0 +1,149 @@
+Bit,Molecule_Index,Drug_ID,SMILES,Atom_Index,Radius
+Bit_623,3,creatinine,CN1CC(=O)NC1=N,7,0
+Bit_550,9,echinacoside,C[C@@H]1O[C@@H](O[C@@H]2[C@@H](O)[C@H](OCCc3ccc(O)c(O)c3)O[C@H](CO[C@@H]3O[C@H](CO)[C@@H](O)[C@H](O)[C@H]3O)[C@H]2OC(=O)/C=C/c2ccc(O)c(O)c2)[C@H](O)[C@H](O)[C@H]1O,1,2
+Bit_1290,24,elarofiban,O=C(O)C[C@H](NC(=O)[C@@H]1CCCN(C(=O)CCC2CCNCC2)C1)c1cccnc1,3,1
+Bit_623,98,metolazone,Cc1ccccc1N1C(=O)c2cc(S(N)(=O)=O)c(Cl)cc2NC1C,6,2
+Bit_623,107,neolignan smi05,C=CCc1cc(OC)c(OC(C)Cc2cc(OC)c(OC)c(OC)c2)c(OC)c1,2,1
+Bit_623,109,neolignan smi08,C=CCc1cc(OC)c(OC(C)C(O)c2cc(OC)c(OC)c(OC)c2)c(OC)c1,2,1
+Bit_623,110,neolignan smi09,C=CCc1cc(OC)c(OC(C)C(O)c2ccc(O)c(OC)c2)c(OC)c1,2,1
+Bit_623,113,PNU200001,N=C(N)c1ccc2[nH]c(Cc3nc4ccccc4[nH]3)nc2c1,0,0
+Bit_82,113,PNU200001,N=C(N)c1ccc2[nH]c(Cc3nc4ccccc4[nH]3)nc2c1,1,2
+Bit_623,115,PNU200648,Cc1ccnc2nc(Cc3nc4cc(C(=N)N)ccc4[nH]3)[nH]c12,15,0
+Bit_82,115,PNU200648,Cc1ccnc2nc(Cc3nc4cc(C(=N)N)ccc4[nH]3)[nH]c12,14,2
+Bit_623,116,PNU200969,CCOC(=O)NC(=N)c1ccc2[nH]c(Cc3nc4ccccc4[nH]3)nc2c1,7,0
+Bit_1290,117,pravastatin,CC[C@H](C)C(=O)O[C@H]1C[C@H](O)C=C2C=C[C@H](C)[C@H](CC[C@@H](O)C[C@@H](O)CC(=O)O)[C@H]21,25,1
+Bit_550,134,tenidap,NC(=O)N1C(=O)C(C(=O)c2cccs2)c2cc(Cl)ccc21,20,2
+Bit_623,163,2,CN(C(=O)[C@H](Cc1ccc(C(=N)N)cc1)NS(=O)(=O)c1ccc2ccccc2c1)C1CCCC1,11,0
+Bit_82,163,2,CN(C(=O)[C@H](Cc1ccc(C(=N)N)cc1)NS(=O)(=O)c1ccc2ccccc2c1)C1CCCC1,10,2
+Bit_623,169,Amiloride,N=C(N)NC(=O)c1nc(Cl)c(N)nc1N,0,0
+Bit_623,193,17,Cc1ccc(C(F)(F)CNc2ccc(C#N)c(CC(=O)NCCONC(=N)N)c2F)nc1,26,0
+Bit_623,194,5,N#Cc1ccc(NCC(F)(F)c2ccccc2)c(F)c1CC(=O)NCCONC(=N)N,29,0
+Bit_623,195,22,N#Cc1ccc(NCC(F)(F)c2cccc(F)c2)c(F)c1CC(=O)NCCONC(=N)N,30,0
+Bit_623,197,34,CN(OCCNC(=O)Cc1c(C#N)ccc(NCC(F)(F)c2ccccn2)c1F)C(=N)N,30,0
+Bit_623,198,23,N#Cc1ccc(NCC(F)(F)c2ccc(F)c(F)c2)c(F)c1CC(=O)NCCONC(=N)N,31,0
+Bit_1290,216,808-Asn-Ala-NH2,CC(NC(=O)C(N)CC(N)=O)C(N)=O,7,1
+Bit_623,220,107-zidovudine,Cc1cn([C@H]2C[C@H]([N-][NH+]=N)[C@@H](CO)O2)c(=O)[nH]c1=O,9,0
+Bit_1290,230,403-Atorvastatin,CC(C)c1c(C(=O)Nc2ccccc2)c(-c2ccccc2)c(-c2ccc(F)cc2)n1CC[C@H](O)C[C@H](O)CC(=O)O,37,1
+Bit_1290,240,Atorvastatin,CC(C)c1c(C(=O)Nc2ccccc2)c(-c2ccccc2)c(-c2ccc(F)cc2)n1CC[C@@H](O)C[C@@H](O)CC(=O)O,37,1
+Bit_82,263,Digoxin,C[C@H]1O[C@@H](O[C@H]2[C@@H](O)C[C@H](O[C@H]3[C@@H](O)C[C@H](O[C@H]4CC[C@@]5(C)[C@H]6C[C@@H](O)[C@]7(C)C(C8=CC(=O)OC8)CC[C@]7(O)[C@@H]6CC[C@@H]5C4)O[C@@H]3C)O[C@@H]2C)C[C@H](O)[C@@H]1O,37,2
+Bit_550,263,Digoxin,C[C@H]1O[C@@H](O[C@H]2[C@@H](O)C[C@H](O[C@H]3[C@@H](O)C[C@H](O[C@H]4CC[C@@]5(C)[C@H]6C[C@@H](O)[C@]7(C)C(C8=CC(=O)OC8)CC[C@]7(O)[C@@H]6CC[C@@H]5C4)O[C@@H]3C)O[C@@H]2C)C[C@H](O)[C@@H]1O,1,2
+Bit_1290,273,Fluvastatin,CC(C)n1c(/C=C/[C@H](O)C[C@H](O)CC(=O)O)c(-c2ccc(F)cc2)c2ccccc21,12,1
+Bit_623,296,Metolazone,Cc1ccccc1N1C(=O)c2cc(S(N)(=O)=O)c(Cl)cc2N[C@H]1C,6,2
+Bit_550,304,Ouabain,C[C@@H]1O[C@@H](O[C@H]2C[C@@H](O)[C@@]3(CO)[C@H]4[C@H](O)C[C@]5(C)[C@@H](C6=CC(=O)OC6)CC[C@]5(O)[C@@H]4CC[C@]3(O)C2)[C@H](O)[C@H](O)[C@H]1O,1,2
+Bit_1290,309,Pravastatin,CCC(C)C(=O)O[C@@H]1C[C@@H](O)C=C2C=C[C@@H](C)[C@@H](CC[C@@H](O)C[C@@H](O)CC(=O)O)[C@@H]21,25,1
+Bit_1290,322,Saquinavir,CC(C)(C)NC(=O)C1CC2CCCCC2CN1CC(O)C(Cc1ccccc1)NC(=O)C(CC(N)=O)NC(=O)c1ccc2ccccc2n1,32,1
+Bit_623,354,1,CC1CCN(C(=O)CC(Cc2cccc(C(=N)N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,16,0
+Bit_82,354,1,CC1CCN(C(=O)CC(Cc2cccc(C(=N)N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,15,2
+Bit_1290,354,1,CC1CCN(C(=O)CC(Cc2cccc(C(=N)N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,7,1
+Bit_550,354,1,CC1CCN(C(=O)CC(Cc2cccc(C(=N)N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,8,2
+Bit_623,355,2,N=C(N)c1cccc(CC(CC(=O)N2CCCCC2C(=O)O)NS(=O)(=O)c2ccc3ccccc3c2)c1,0,0
+Bit_82,355,2,N=C(N)c1cccc(CC(CC(=O)N2CCCCC2C(=O)O)NS(=O)(=O)c2ccc3ccccc3c2)c1,1,2
+Bit_1290,355,2,N=C(N)c1cccc(CC(CC(=O)N2CCCCC2C(=O)O)NS(=O)(=O)c2ccc3ccccc3c2)c1,10,1
+Bit_550,355,2,N=C(N)c1cccc(CC(CC(=O)N2CCCCC2C(=O)O)NS(=O)(=O)c2ccc3ccccc3c2)c1,9,2
+Bit_623,356,3,COC(=O)C1CCCCN1C(=O)CC(Cc1cccc(C(=N)N)c1)NS(=O)(=O)c1ccc2ccccc2c1,21,0
+Bit_82,356,3,COC(=O)C1CCCCN1C(=O)CC(Cc1cccc(C(=N)N)c1)NS(=O)(=O)c1ccc2ccccc2c1,20,2
+Bit_1290,356,3,COC(=O)C1CCCCN1C(=O)CC(Cc1cccc(C(=N)N)c1)NS(=O)(=O)c1ccc2ccccc2c1,12,1
+Bit_550,356,3,COC(=O)C1CCCCN1C(=O)CC(Cc1cccc(C(=N)N)c1)NS(=O)(=O)c1ccc2ccccc2c1,13,2
+Bit_623,357,4,N=C(N)c1cccc(CC(CC(=O)N2CCCC(C(=O)O)C2)NS(=O)(=O)c2ccc3ccccc3c2)c1,0,0
+Bit_82,357,4,N=C(N)c1cccc(CC(CC(=O)N2CCCC(C(=O)O)C2)NS(=O)(=O)c2ccc3ccccc3c2)c1,1,2
+Bit_1290,357,4,N=C(N)c1cccc(CC(CC(=O)N2CCCC(C(=O)O)C2)NS(=O)(=O)c2ccc3ccccc3c2)c1,10,1
+Bit_550,357,4,N=C(N)c1cccc(CC(CC(=O)N2CCCC(C(=O)O)C2)NS(=O)(=O)c2ccc3ccccc3c2)c1,9,2
+Bit_623,358,6,N=C(N)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,0,0
+Bit_82,358,6,N=C(N)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,1,2
+Bit_1290,358,6,N=C(N)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,10,1
+Bit_550,358,6,N=C(N)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,9,2
+Bit_623,359,7,COC(=O)C1CCN(C(=O)CC(Cc2cccc(C(=N)N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,19,0
+Bit_82,359,7,COC(=O)C1CCN(C(=O)CC(Cc2cccc(C(=N)N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,18,2
+Bit_1290,359,7,COC(=O)C1CCN(C(=O)CC(Cc2cccc(C(=N)N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,10,1
+Bit_550,359,7,COC(=O)C1CCN(C(=O)CC(Cc2cccc(C(=N)N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,11,2
+Bit_623,360,8,N=C(NO)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,0,0
+Bit_1290,360,8,N=C(NO)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,11,1
+Bit_550,360,8,N=C(NO)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,10,2
+Bit_623,361,9,CNC(=N)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,3,0
+Bit_1290,361,9,CNC(=N)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,11,1
+Bit_550,361,9,CNC(=N)c1cccc(CC(CC(=O)N2CCC(C(=O)O)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,10,2
+Bit_1290,362,13,CC1CCN(C(=O)CC(Cc2cccc(N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,7,1
+Bit_550,362,13,CC1CCN(C(=O)CC(Cc2cccc(N)c2)NS(=O)(=O)c2ccc3ccccc3c2)CC1,8,2
+Bit_623,363,16,CNC(=N)c1cccc(CC(CC(=O)N2CCC(C)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,3,0
+Bit_1290,363,16,CNC(=N)c1cccc(CC(CC(=O)N2CCC(C)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,11,1
+Bit_550,363,16,CNC(=N)c1cccc(CC(CC(=O)N2CCC(C)CC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,10,2
+Bit_623,364,Alprenolol ester,C=CCc1ccccc1OCC(CNC(C)C)OC(=O)C1CC1,2,1
+Bit_623,372,"DB75 [2,5-bis(4-amidinophenyl)furan]",N=C(N)c1ccc(-c2ccc(-c3ccc(C(=N)N)cc3)o2)cc1,0,0
+Bit_623,372,"DB75 [2,5-bis(4-amidinophenyl)furan]",N=C(N)c1ccc(-c2ccc(-c3ccc(C(=N)N)cc3)o2)cc1,16,0
+Bit_82,372,"DB75 [2,5-bis(4-amidinophenyl)furan]",N=C(N)c1ccc(-c2ccc(-c3ccc(C(=N)N)cc3)o2)cc1,15,2
+Bit_82,372,"DB75 [2,5-bis(4-amidinophenyl)furan]",N=C(N)c1ccc(-c2ccc(-c3ccc(C(=N)N)cc3)o2)cc1,1,2
+Bit_623,383,PNU 200603,N=C(N)c1ccc2nc(-c3ccccn3)[nH]c2c1,0,0
+Bit_82,383,PNU 200603,N=C(N)c1ccc2nc(-c3ccccn3)[nH]c2c1,1,2
+Bit_623,402,BMS 189664,CS(=O)(=O)N[C@H](Cc1ccccc1)C(=O)N1CCC[C@H]1C(=O)NCC1CCN(C(=N)N)CC1,29,0
+Bit_623,403,PNU200969,CCOC(=O)NC(=N)c1ccc2nc(Cc3nc4ccccc4[nH]3)[nH]c2c1,7,0
+Bit_82,412,PNU-179962,CC(=O)NC[C@H]1CN(c2ccc(-c3nnc(CC/C(C)=N\O)s3)c(F)c2)C(=O)O1,12,2
+Bit_623,433,Epimedin A,COc1ccc(-c2oc3c(CC=C(C)C)c(O[C@@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@H]4O)ccc3c(=O)c2O[C@@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O[C@@H]2O[C@@H](C)[C@H](O)[C@@H](O)[C@H]2O)cc1,10,1
+Bit_550,433,Epimedin A,COc1ccc(-c2oc3c(CC=C(C)C)c(O[C@@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@H]4O)ccc3c(=O)c2O[C@@H]2O[C@H](CO)[C@@H](O)[C@H](O)[C@H]2O[C@@H]2O[C@@H](C)[C@H](O)[C@@H](O)[C@H]2O)cc1,48,2
+Bit_623,434,Epimedin B,COc1ccc(-c2oc3c(CC=C(C)C)c(O[C@@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@H]4O)cc(O)c3c(=O)c2O[C@H]2O[C@H](C)[C@@H](O)[C@H](O)[C@@H]2O[C@H]2OC[C@H](O)[C@@H](O)[C@@H]2O)cc1,10,1
+Bit_550,434,Epimedin B,COc1ccc(-c2oc3c(CC=C(C)C)c(O[C@@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@H]4O)cc(O)c3c(=O)c2O[C@H]2O[C@H](C)[C@@H](O)[C@H](O)[C@@H]2O[C@H]2OC[C@H](O)[C@@H](O)[C@@H]2O)cc1,38,2
+Bit_623,435,Icariin,COc1ccc(-c2oc3c(CC=C(C)C)c(O[C@@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@H]4O)cc(O)c3c(=O)c2O[C@H]2O[C@H](C)[C@@H](O)[C@H](O)[C@@H]2O)cc1,10,1
+Bit_550,435,Icariin,COc1ccc(-c2oc3c(CC=C(C)C)c(O[C@@H]4O[C@H](CO)[C@@H](O)[C@H](O)[C@H]4O)cc(O)c3c(=O)c2O[C@H]2O[C@H](C)[C@@H](O)[C@H](O)[C@@H]2O)cc1,38,2
+Bit_623,436,Baohuoside I,COc1ccc(-c2oc3c(CC=C(C)C)c(O)cc(O)c3c(=O)c2O[C@H]2O[C@H](C)[C@@H](O)[C@H](O)[C@@H]2O)cc1,10,1
+Bit_550,436,Baohuoside I,COc1ccc(-c2oc3c(CC=C(C)C)c(O)cc(O)c3c(=O)c2O[C@H]2O[C@H](C)[C@@H](O)[C@H](O)[C@@H]2O)cc1,27,2
+Bit_1290,474,Biotin-Saquinavir,CC(C)(C)NC(=O)[C@@H]1CC2CCCCC2CN1CC(OC(=O)CCCCC1SCC2NC(=O)NC21)[C@H](Cc1ccccc1)NC(=O)[C@H](CC(N)=O)NC(=O)c1ccc2ccccc2n1,47,1
+Bit_623,475,G6191,CN1C(=O)CN(CCC(=O)O)C(=O)c2cc(NCc3ccc(C(=N)N)cc3)ccc21,23,0
+Bit_82,475,G6191,CN1C(=O)CN(CCC(=O)O)C(=O)c2cc(NCc3ccc(C(=N)N)cc3)ccc21,22,2
+Bit_623,476,G6262,CCOC(=O)CCN1CC(=O)N(C)c2ccc(OCc3ccc(C(=N)N)cc3)cc2C1=O,24,0
+Bit_82,476,G6262,CCOC(=O)CCN1CC(=O)N(C)c2ccc(OCc3ccc(C(=N)N)cc3)cc2C1=O,23,2
+Bit_623,477,G6264,CCOC(=O)CCN1CC(=O)N(C)c2ccc(NCc3ccc(C(=N)N)cc3)cc2C1=O,24,0
+Bit_82,477,G6264,CCOC(=O)CCN1CC(=O)N(C)c2ccc(NCc3ccc(C(=N)N)cc3)cc2C1=O,23,2
+Bit_1290,529,Ac-Trp-Ala-Gly-Gly-Asp-Ala-NH2,CC(=O)NC(Cc1c[nH]c2ccccc12)C(=O)NC(C)C(=O)NCC(=O)NCC(=O)NC(CC(=O)O)C(=O)NC(C)C(N)=O,32,1
+Bit_1290,530,Ac-Gly-Asn-Ala-NH2,CC(=O)NCC(=O)N[C@@H](CC(N)=O)C(=O)N[C@@H](C)C(N)=O,9,1
+Bit_550,551,Quercitrin (21),C[C@@H]1O[C@@H](Oc2c(-c3ccc(O)c(O)c3)oc3cc(O)cc(O)c3c2=O)[C@@H](O)[C@H](O)[C@@H]1O,1,2
+Bit_550,553,IRR (23),COc1cc(-c2oc3cc(O)cc(O)c3c(=O)c2OC2O[C@H](CO[C@H]3O[C@H](C)[C@@H](O)[C@H](O)[C@@H]3O)[C@@H](O)[C@H](O)[C@H]2O)ccc1O,26,2
+Bit_550,635,Naringin,C[C@@H]1O[C@@H](O[C@H]2[C@H](Oc3cc(O)c4c(c3)O[C@H](c3ccc(O)cc3)CC4=O)O[C@H](CO)[C@@H](O)[C@@H]2O)[C@H](O)[C@H](O)[C@H]1O,1,2
+Bit_550,640,BILN-2061,COc1ccc2c(O[C@@H]3CC4C(=O)N[C@]5(C(=O)O)C[C@@H]5/C=C\CCCCC[C@H](NC(=O)OC5CCCC5)C(=O)N4C3)cc(-c3csc(NC(C)C)n3)nc2c1,9,2
+Bit_623,641,2c,N=C(N)c1cccc(-n2nc(C(F)(F)F)cc2C(=O)Nc2ncc(-c3ccccc3S(N)(=O)=O)cn2)c1,0,0
+Bit_82,641,2c,N=C(N)c1cccc(-n2nc(C(F)(F)F)cc2C(=O)Nc2ncc(-c3ccccc3S(N)(=O)=O)cn2)c1,1,2
+Bit_1290,650,a,O=C(O)CC(CC1CCN(C(=O)CCc2ccc3c(n2)NCCC3)CC1)c1cnc2ccccc2c1,3,1
+Bit_1290,651,b,O=C(O)CC(CC1CCN(C(=O)CCc2ccc3c(n2)NCCC3)CC1)C1CNc2ccccc2C1,3,1
+Bit_1290,652,C,O=C(O)CC(C1CCN(C(=O)CCCc2ccc3c(n2)NCCC3)CC1)C1CNc2ccccc2C1,3,1
+Bit_623,653,I-II,O=C(O)C[C@@H](c1cnc2ccccc2c1)N1CC[C@@H](CCCc2ccc3c(n2)NCCC3)C1=O,18,2
+Bit_1290,653,I-II,O=C(O)C[C@@H](c1cnc2ccccc2c1)N1CC[C@@H](CCCc2ccc3c(n2)NCCC3)C1=O,3,1
+Bit_623,660,Arzanol,CCc1oc(O)c(Cc2c(O)c(CC=C(C)C)c(O)c(C(C)=O)c2O)c(=O)c1C,12,1
+Bit_623,665,Org 12962,FC(F)(F)c1ccc(N2CCNCC2)nc1Cl,5,2
+Bit_1290,705,6,COC(=O)C[C@@H](C(=O)NN(Cc1ccc(Br)cc1)C[C@@](O)(Cc1ccccc1)C(=O)NC1CCOC1)C(C)(C)C,4,1
+Bit_1290,706,8,COCCNC(=O)[C@H](NC(=O)[C@](O)(Cc1ccccc1)CN(Cc1ccc(Br)cc1)NC(=O)[C@H](CC(=O)OC)C(C)(C)C)C(C)C,34,1
+Bit_1290,707,10,CNC(=O)[C@H](NC(=O)[C@](O)(Cc1ccccc1)CN(Cc1ccc(Br)cc1)NC(=O)[C@H](CC(=O)OC)C(C)(C)C)C(C)(C)C,31,1
+Bit_1290,708,11,CNC(=O)[C@H](NC(=O)[C@](O)(Cc1ccccc1)CN(Cc1ccc(-c2ccccn2)cc1)NC(=O)[C@H](CC(=O)OC)C(C)(C)C)C(C)(C)C,36,1
+Bit_1290,728,Setrobuvir (ANA598),CS(=O)(=O)Nc1ccc2c(c1)S(=O)(=O)N/C(=C1\C(=O)[C@@H]3[C@H]4CC[C@H](C4)[C@@H]3N(Cc3ccc(F)cc3)C1=O)N2,9,2
+Bit_550,730,cymarin,CO[C@H]1C[C@H](O[C@H]2CC[C@]3(C=O)[C@H]4CC[C@]5(C)[C@@H](C6=CC(=O)OC6)CC[C@]5(O)[C@@H]4CC[C@]3(O)C2)O[C@H](C)[C@H]1O,35,2
+Bit_550,746,IRR ,COc1cc(-c2oc3cc(O)cc(O)c3c(=O)c2O[C@@H]2O[C@H](CO[C@@H]3O[C@@H](C)[C@H](O)[C@@H](O)[C@H]3O)[C@@H](O)[C@H](O)[C@H]2O)ccc1O,26,2
+Bit_623,749,LEF553,N=C(N)NCCC[C@@H](NC(=O)[C@@H](N)Cc1ccc(O)cc1)C(=O)N[C@@H](Cc1ccccc1)C(=O)N[C@@H](Cc1ccccc1)C(N)=O,0,0
+Bit_623,753,neolignan smi06,C=CCc1cc(OC)c(OC(C)C(OC(C)=O)c2ccc(OC)c(OC)c2)c(OC)c1,2,1
+Bit_623,754,neolignan smi07,C=CCc1cc(OC)c(OC(C)C(O)c2ccc(OC)c(OC)c2)c(OC)c1,2,1
+Bit_623,755,neolignan smi10,C=CCc1cc(OC)c(OC(C)C(O)c2cc(O)cc(OC)c2)c(OC)c1,2,1
+Bit_550,758,ouabain,C[C@@H]1O[C@@H](O[C@H]2C[C@@H](O)[C@]3(CO)[C@H]4[C@H](O)C[C@]5(C)[C@@H](C6=CC(=O)OC6)CC[C@]5(O)[C@@H]4CC[C@]3(O)C2)[C@H](O)[C@H](O)[C@H]1O,1,2
+Bit_623,759,PNU200603,N=C(N)c1ccc2[nH]c(-c3ccccn3)nc2c1,0,0
+Bit_82,759,PNU200603,N=C(N)c1ccc2[nH]c(-c3ccccn3)nc2c1,1,2
+Bit_550,760,quercitrin ,C[C@@H]1O[C@@H](Oc2c(-c3ccc(O)c(O)c3)oc3cc(O)cc(O)c3c2=O)[C@H](O)[C@H](O)[C@H]1O,1,2
+Bit_1290,761,saquinavir,CC(C)(C)NC(=O)[C@@H]1C[C@@H]2CCCC[C@@H]2CN1C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)[C@H](CC(N)=O)NC(=O)c1ccc2ccccc2n1,32,1
+Bit_1290,778,187-Saquinavir,CC(C)(C)NC(=O)[C@H]1C[C@H]2CCCC[C@H]2CN1C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)[C@@H](CC(N)=O)NC(=O)c1ccc2ccccc2n1,32,1
+Bit_1290,781,Bendroflumethiazide,NS(=O)(=O)c1cc2c(cc1C(F)(F)F)NC(Cc1ccccc1)NS2(=O)=O,6,2
+Bit_550,783,Cymarin,COC1CC(OC2CCC3(C=O)C4CCC5(C)C(C6=CC(=O)OC6)CCC5(O)C4CCC3(O)C2)OC(C)C1O,35,2
+Bit_623,797,Rhodamine 123 (Rho 123),COC(=O)c1ccccc1-c1c2ccc(=N)cc-2oc2cc(N)ccc12,15,0
+Bit_623,801,10,N=C(N)c1cccc(CC(CC(=O)N2CCNCC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,0,0
+Bit_82,801,10,N=C(N)c1cccc(CC(CC(=O)N2CCNCC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,1,2
+Bit_1290,801,10,N=C(N)c1cccc(CC(CC(=O)N2CCNCC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,10,1
+Bit_550,801,10,N=C(N)c1cccc(CC(CC(=O)N2CCNCC2)NS(=O)(=O)c2ccc3ccccc3c2)c1,9,2
+Bit_550,804,Doxorubicin,COc1cccc2c1C(=O)c1c(O)c3c(c(O)c1C2=O)C[C@](O)(C(=O)CO)C[C@H]3O[C@@H]1C[C@@H](N)[C@@H](O)[C@@H](C)O1,36,2
+Bit_550,806,Proscillaridin,CC1OC(O[C@@H]2C=C3CC[C@@H]4[C@H](CC[C@]5(C)[C@@H](c6ccc(=O)oc6)CC[C@]45O)[C@@]3(C)CC2)C(O)C(O)C1O,1,2
+Bit_623,810,PNU200648,Cc1ccnc2nc(Cc3nc4ccc(C(=N)N)cc4[nH]3)[nH]c12,16,0
+Bit_82,810,PNU200648,Cc1ccnc2nc(Cc3nc4ccc(C(=N)N)cc4[nH]3)[nH]c12,15,2
+Bit_82,813,PNU-182347,CC(=S)NC[C@H]1CN(c2ccc(-c3nnc(CN)s3)c(F)c2)C(=O)O1,12,2
+Bit_82,815,PNU-182945,CNCc1nnc(-c2ccc(N3C[C@H](CNC(C)=S)OC3=O)cc2F)s1,6,2
+Bit_82,816,PNU-241028,CC(=S)NC[C@H]1CN(c2ccc(-c3nnc(CNS(C)(=O)=O)s3)c(F)c2)C(=O)O1,12,2
+Bit_623,829,MEN14970,O=C(NC1(C(=O)N[C@H](Cc2ccccc2)C(=O)NCCCN2CCOCC2)CCCC1)c1ccc(-c2ccccc2)s1,32,2
+Bit_623,868,32,O=C(Nc1ccc(C(F)(F)F)c(Cl)c1)c1ccnn1CCc1ccncc1,5,2
+Bit_550,882,Astilbin,C[C@@H]1O[C@@H](O[C@@H]2C(=O)c3c(O)cc(O)cc3O[C@H]2c2ccc(O)c(O)c2)[C@H](O)[C@H](O)[C@H]1O,1,2
+Bit_550,886,S1,C=CCNC(=O)C(=O)C(CCC)NC(=O)C1CC2CN1C(=O)C(C1CCCCC1)NC(=O)Cc1cccc(c1)OCCC(C)(C)O2,36,2
+Bit_1290,891,5'-L-Asp-FUdR,NC(CC(=O)O)C(=O)OC[C@@H]1O[C@H](n2cc(F)c(=O)[nH]c2=O)C[C@H]1O,2,1
+Bit_1290,892,Acetyl-Trp-Ala-Gly-Gly-Asn-Ala-Amide,CC(=O)N[C@@H](Cc1c[nH]c2ccccc12)C(=O)N[C@@H](C)C(=O)NCC(=O)NCC(=O)N[C@@H](CC(N)=O)C(=O)N[C@@H](C)C(N)=O,32,1
+Bit_550,893,Daunorubicin,COc1cccc2c1C(=O)c1c(O)c3c(c(O)c1C2=O)C[C@@](O)(C(C)=O)C[C@@H]3O[C@H]1C[C@H](N)[C@H](O)[C@H](C)O1,35,2
+Bit_1290,895,Cerivastatin,COCc1c(C(C)C)nc(C(C)C)c(/C=C/[C@@H](O)C[C@@H](O)CC(=O)O)c1-c1ccc(F)cc1,21,1
+Bit_1290,907,3,COC(=O)C[C@@H](C(=O)NN(Cc1ccc(/C=C\c2ccccc2)cc1)C[C@@](O)(Cc1ccccc1)C(=O)NC1c2ccccc2C[C@H]1O)C(C)(C)C,4,1
