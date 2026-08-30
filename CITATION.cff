@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "Interpretable Machine Learning for Caco-2 Permeability Prediction"
+message: "If you use this software or workflow in your research, please cite this repository."
+type: software
+
+authors:
+  - family-names: "Asghar"
+    given-names: "Moneeba"
+
+repository-code: "https://github.com/Moneebaasghar/admet-drug-discovery-ml"
+
+abstract: >
+  Reproducible and interpretable machine-learning workflow for Caco-2
+  permeability prediction using RDKit molecular descriptors, Morgan
+  fingerprints, Random Forest regression, cross-validation, out-of-fold
+  prediction, SHAP analysis, and statistical interpretation of molecular
+  fingerprint environments.
+
+keywords:
+  - ADMET
+  - Caco-2
+  - drug discovery
+  - cheminformatics
+  - computational chemistry
+  - molecular machine learning
+  - QSAR
+  - RDKit
+  - explainable AI
+  - SHAP
+
+license: MIT
+year: 2026
