@@ -1,0 +1,2 @@
+Validation,Training_Molecules,Validation_Molecules,Training_Scaffolds,Validation_Scaffolds,R2,RMSE,MAE,Residual_Mean,Residual_Std
+Scaffold Holdout,676,234,390,98,0.6381044893623629,0.44039241378813115,0.3465943031728863,-0.05630337875843737,0.4367784423051582
