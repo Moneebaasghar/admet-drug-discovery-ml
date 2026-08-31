@@ -213,3 +213,183 @@ The overall interpretation framework can therefore be summarized as:
 ```
 
 The two approaches provide complementary information: SHAP helps explain **which molecular properties influence predictions**, while Morgan analysis helps identify **recurring local structural environments used by the model**.
+---
+
+# Scaffold-Based Validation
+
+Random cross-validation can provide optimistic estimates when structurally similar molecules are distributed across both training and validation folds. To evaluate whether the model can generalize to chemically distinct molecular scaffolds, an additional scaffold-based validation was performed.
+
+The dataset contained:
+
+* **910 molecules**
+* **488 unique molecular scaffolds**
+* **390 training scaffolds**
+* **98 validation scaffolds**
+* **676 training molecules**
+* **234 validation molecules**
+* **0 scaffold overlap between training and validation sets**
+* **0 invalid molecular structures**
+
+The scaffold leakage check passed, confirming that no molecular scaffold was shared between the training and validation sets.
+
+The combined descriptor + Morgan representation was evaluated using a Random Forest model on the scaffold-based split.
+
+| Metric        | Scaffold Validation |
+| ------------- | ------------------: |
+| R²            |          **0.6381** |
+| RMSE          |          **0.4404** |
+| MAE           |          **0.3466** |
+| Residual Mean |             -0.0563 |
+| Residual Std  |              0.4368 |
+
+## Comparison with Random Cross-Validation
+
+The scaffold-based validation performance was compared with the previously obtained random 5-fold cross-validation results.
+
+| Evaluation             |                  R² |                RMSE |                 MAE |
+| ---------------------- | ------------------: | ------------------: | ------------------: |
+| Random 5-fold CV       | **0.7455 ± 0.0258** | **0.3895 ± 0.0217** | **0.3005 ± 0.0148** |
+| Out-of-fold prediction |          **0.7230** |          **0.4089** |          **0.3177** |
+| Scaffold validation    |          **0.6381** |          **0.4404** |          **0.3466** |
+
+The reduction in R² from random cross-validation (**0.7455**) to scaffold validation (**0.6381**) indicates that prediction becomes more challenging when the model is evaluated on molecules containing scaffolds that were not represented during training.
+
+This difference demonstrates why scaffold-aware validation is important for molecular machine-learning models. Random splitting can place chemically related molecules in both training and validation sets, whereas scaffold splitting provides a more stringent assessment of generalization to structurally distinct chemistry.
+
+Despite the reduction in performance, the model retains meaningful predictive ability on unseen scaffolds, with a scaffold-validation **R² of 0.6381**.
+
+Therefore, the model demonstrates useful predictive performance within the chemical space represented by the dataset, while predictions for substantially novel molecular scaffolds should be interpreted with greater caution.
+
+The scaffold-validation result is available in:
+
+```text
+results/caco2_scaffold_validation.csv
+```
+
+The validation procedure is implemented in:
+
+```text
+src/07_scaffold_validation.py
+```
+
+---
+
+# Reproducibility
+
+The complete analysis pipeline is organized into sequential scripts:
+
+```text
+src/
+├── 01_download_data.py
+├── 02_generate_descriptors.py
+├── 03_generate_morgan.py
+├── 04_model_comparison.py
+├── 05_visualize_key_morgan_bits.py
+├── 06_final_morgan_bit_figures.py
+└── 07_scaffold_validation.py
+```
+
+The project uses a reproducible Python environment with the required dependencies specified in:
+
+```text
+requirements.txt
+```
+
+The principal workflow is:
+
+```text
+Caco-2 Dataset
+      │
+      ▼
+RDKit Molecular Descriptors
+      │
+      ├───────────────┐
+      │               │
+      ▼               ▼
+Morgan Fingerprints   Descriptor Features
+      │               │
+      └───────┬───────┘
+              ▼
+      Random Forest Models
+              │
+              ▼
+       Model Comparison
+              │
+       ┌──────┴──────┐
+       ▼             ▼
+   Random CV     Scaffold Validation
+       │             │
+       └──────┬──────┘
+              ▼
+       Model Interpretation
+       ┌──────┴──────┐
+       ▼             ▼
+      SHAP      Morgan Analysis
+       │             │
+       └──────┬──────┘
+              ▼
+     Chemical Interpretation
+```
+
+---
+
+# Limitations
+
+Several limitations should be considered when interpreting the results.
+
+1. The dataset contains **910 molecules**, which limits the chemical diversity available for model development.
+2. Random Forest performance depends on the molecular representations supplied to the model.
+3. Random cross-validation may provide more optimistic estimates when related chemical structures occur across folds.
+4. Scaffold validation produced lower performance than random cross-validation, indicating reduced generalization to unseen scaffolds.
+5. Morgan fingerprint bits represent algorithmically generated atom-centered environments and should not automatically be interpreted as unique functional groups.
+6. Feature importance and SHAP associations do not establish causal relationships between molecular properties and Caco-2 permeability.
+7. The model is intended for research and hypothesis generation rather than direct experimental or clinical decision-making.
+
+---
+
+# Conclusion
+
+This project developed a reproducible machine-learning workflow for predicting **Caco-2 permeability** from molecular structure.
+
+Three molecular representations were evaluated:
+
+* RDKit physicochemical descriptors
+* Morgan fingerprints
+* Combined RDKit descriptors + Morgan fingerprints
+
+The combined representation produced the strongest random 5-fold cross-validation performance:
+
+**R² = 0.7455 ± 0.0258**
+
+with:
+
+**RMSE = 0.3895 ± 0.0217**
+
+and:
+
+**MAE = 0.3005 ± 0.0148**.
+
+Out-of-fold evaluation across all 910 molecules produced:
+
+**R² = 0.7230**
+
+**RMSE = 0.4089**
+
+**MAE = 0.3177**
+
+A more stringent scaffold-based validation produced:
+
+**R² = 0.6381**
+
+**RMSE = 0.4404**
+
+**MAE = 0.3466**
+
+The reduction in performance under scaffold validation demonstrates that generalization to chemically novel molecular scaffolds remains more challenging than prediction under random splitting.
+
+Model interpretation was performed using both **SHAP** and **Morgan fingerprint analysis**, providing complementary information about global physicochemical effects and recurring local structural environments.
+
+Overall, the workflow demonstrates how molecular descriptors, structural fingerprints, rigorous validation, out-of-fold prediction, and explainability methods can be combined to develop a more transparent and reproducible ADMET machine-learning model.
+
+
+
