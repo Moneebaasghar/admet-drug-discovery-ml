@@ -360,7 +360,7 @@ data/processed/morgan_top_bits_decoded.csv
 Additional statistical analysis files include:
 
 ```text
-data/processed/morgan_bit_association.csv
+data/processed/morgan_bit_caco2_association.csv
 data/processed/morgan_bit_statistical_analysis.csv
 data/processed/morgan_bit_statistical_analysis_fdr.csv
 data/processed/morgan_bit_adjusted_analysis.csv
