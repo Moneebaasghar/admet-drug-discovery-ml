@@ -3,7 +3,8 @@ pandas==2.3.3
 rdkit==2023.09.6
 scikit-learn==1.9.0
 scipy==1.17.1
-shap==0.51.0
+shap==0.48.0
 matplotlib==3.11.1
 seaborn==0.13.2
 PyTDC==1.1.15
+setuptools==80.10.2
